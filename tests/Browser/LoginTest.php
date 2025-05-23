@@ -15,14 +15,14 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/') // Mengunjungi halaman utama dengan route "/"
-                    ->assertSee('Praktikum PPL') // Memastikan teks "Praktikum PPL" ada
-                    ->clickLink('Log in') // Mengklik link "Log in"
-                    ->assertPathIs('/login') // Memastikan berada di halaman login
-                    ->type('email', 'user2@gmail.com') // Mengisi email
+                    ->assertSee('Praktikum PPL') // Membaca teks "Praktikum PPL"
+                    ->clickLink('Log in') // Klik link "Log in"
+                    ->assertPathIs('/login') // Memastikan halaman benar di link login
+                    ->type('email', 'user123@email.com') // Mengisi field email
                     ->type('password', 'password') // Mengisi password
-                    ->press('LOG IN') // Menekan tombol "LOG IN"
-                    ->assertPathIs('/dashboard') // Memastikan diarahkan ke halaman dashboard
-                    ->assertSee('Dashboard'); // Memastikan bahwa teks "Dashboard" muncul
+                    ->press('LOG IN') // Klik tombol "LOG IN"
+                    ->assertPathIs('/dashboard') // Memastikan halaman benar di link dashboard
+                    ->assertSee('Dashboard'); // Membaca teks "Dashboard"
         });
     }
 }

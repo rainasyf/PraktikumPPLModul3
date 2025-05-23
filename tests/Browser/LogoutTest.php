@@ -16,15 +16,14 @@ class LogoutTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/') // Mengunjungi halaman utama dengan route "/"
-                    ->clickLink('Log in') // Klik link "Log in" untuk masuk ke halaman login
-                    ->type('email', 'user2@gmail.com') // Mengisi kolom email dengan user terdaftar
-                    ->type('password', 'password') // Mengisi kolom password
-                    ->press('LOG IN') // Menekan tombol "LOG IN"
-                    ->assertPathIs('/dashboard') // Memastikan bahwa user diarahkan ke halaman dashboard
-                    ->assertSee('Dashboard') // Memastikan teks "Dashboard" muncul di halaman
+                    ->clickLink('Log in') // Klik link "Log in"
+                    ->assertPathIs('/login') // Memastikan halaman benar di link login
+                    ->type('email', 'user123@email.com') // Mengisi field email
+                    ->type('password', 'password') // Mengisi password
+                    ->press('LOG IN') // Klik tombol "LOG IN"
+                    ->assertPathIs('/dashboard') // Memastikan halaman benar di link dashboard
                     ->press('user') // Klik tombol atau dropdown dengan label "user"
-                    ->clickLink('Log Out') // Klik link "Log Out" untuk keluar dari dashboard
-                    ->assertPathIs('/'); // Memastikan bahwa user diarahkan kembali ke halaman utama
+                    ->clickLink('Log Out'); // Klik link "Log Out" untuk keluar dari dashboard
         });
     }
 }

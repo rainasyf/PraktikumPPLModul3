@@ -16,15 +16,16 @@ class RegistrationTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/') // Mengunjungi halaman utama dengan route "/"
-                    ->assertSee('Modul 3') // Memastikan bahwa teks "Modul 3" muncul di halaman
-                    ->clickLink('Register') //Klik link dengan teks "Register" untuk membuka halaman registrasi
-                    ->assertPathIs('/register') // Memastikan bahwa halaman yang dikunjungi adalah /register
-                    ->type('name', 'user') // Mengisi field "name" dengan nama "user"
-                    ->type('email', 'user' . rand(1000, 9999) . '@gmail.com') // Mengisi field "email" dengan email yang unik (random)
-                    ->type('password', 'password') // Mengisi field "password" dengan password yang valid
-                    ->type('password_confirmation', 'password') // Mengisi field "password_confirmation" dengan password yang sama
-                    ->press('REGISTER') // Menekan tombol "REGISTER" untuk mengirimkan form registrasi
-                    ->assertPathIs('/dashboard'); // Memastikan bahwa setelah registrasi, halaman yang dikunjungi adalah /dashboard
+                    ->assertSee('Modul 3') // Membaca teks "Modul 3"
+                    ->clickLink('Register') //Klik link "Register"
+                    ->assertPathIs('/register') // Memastikan halaman benar di link register
+                    ->type('name', 'user') // Mengisi field name
+                    ->type('email', 'user123@email.com') // Mengisi field email
+                    ->type('password', 'password') // Mengisi field password
+                    ->type('password_confirmation', 'password') // Mengisi field password_confirmation dengan password yang sama
+                    ->press('REGISTER') // Klik tombol "REGISTER"
+                    ->assertPathIs('/dashboard'); // Memastikan halaman benar di link dashboard
         });
     }
 }
+
