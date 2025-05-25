@@ -14,6 +14,7 @@ class LogoutTest extends DuskTestCase
      */
     public function testLogout(): void
     {
+
         $this->browse(function (Browser $browser) {
             $browser->visit('/') // Mengunjungi halaman utama dengan route "/"
                     ->clickLink('Log in') // Klik link "Log in"
@@ -21,10 +22,13 @@ class LogoutTest extends DuskTestCase
                     ->type('email', 'user123@email.com') // Mengisi field email
                     ->type('password', 'password') // Mengisi password
                     ->press('LOG IN') // Klik tombol "LOG IN"
-                    ->assertPathIs('/dashboard') // Memastikan halaman benar di link dashboard
-                    ->press('user') // Klik tombol atau dropdown dengan label "user"
-                    ->clickLink('Log Out'); // Klik link "Log Out" untuk keluar dari dashboard
+                    ->assertPathIs('/dashboard'); // Memastikan halaman benar di link dashboard
+
+            $browser->click('#click-dropdown') // Klik dropdown user
+                    ->click('form[action*="logout"] a') // Klik "logout"
+                    ->pause(500)
+                    ->screenshot('logout-success'); //Pemberitahuan bahwa logout berhasil
+
         });
     }
 }
-
